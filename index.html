@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Story </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="overlay">
+  <h1 id="text">A Story Begins...</h1>
+  <button id="btn" onclick="start()">Play 🎬</button>
+</div>
+
+<audio id="song" src="song.mp3"></audio>
+
+<script>
+let scenes = [
+  { text: "In a world full of strangers...", img: "sus1.jpg" },
+  { text: "A star has arrived in style", img: "sus2.jpg" },
+  { text: "His smile changed everything ✨", img: "sus3.jpg" },
+  { text: "A legend lives forever 💫", img: "sus4.jpg" }, // 👈 add here
+  { text: "Every moment he do became memory 🎬", img: "sus4.jpg" },
+  { text: "And that alive in all of us", img: "sus3.jpg" }
+ 
+];
+
+let i = 0;
+
+function start() {
+  document.getElementById("btn").style.display = "none";
+  document.getElementById("song").play();
+  showScene();
+}
+
+function showScene() {
+  if (i < scenes.length) {
+    document.body.style.backgroundImage = "url('" + scenes[i].img + "')";
+    let textEl = document.getElementById("text");
+
+    textEl.style.opacity = 0;
+
+    setTimeout(() => {
+      textEl.innerHTML = scenes[i].text;
+      textEl.style.opacity = 1;
+    }, 500);
+
+    i++;
+    setTimeout(showScene, 3500);
+  } else {
+    finalScene();
+  }
+}
+
+function finalScene() {
+  document.getElementById("text").innerHTML =
+    "Our story is my favorite ❤️<br><br><button onclick='love()'>Forever?</button>";
+}
+
+
+</script>
+
+</body>
+</html>
